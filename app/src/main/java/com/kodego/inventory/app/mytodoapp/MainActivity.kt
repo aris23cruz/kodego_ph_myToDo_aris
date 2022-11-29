@@ -24,17 +24,22 @@ class MainActivity : AppCompatActivity() {
         view()
 
         binding.btnAdd.setOnClickListener(){
-            val task:String = binding.etTask.text.toString()
-            val toDo = ToDo(task)
-            save(toDo)
-            adapter.toDo.add(toDo)
-            adapter.notifyDataSetChanged()
-            Toast.makeText(applicationContext,"Saved!",Toast.LENGTH_LONG).show()
+            try {
+                val task:String = binding.etTask.text.toString()
+                val toDo = ToDo(task)
+                save(toDo)
+                adapter.toDo.add(toDo)
+                adapter.notifyDataSetChanged()
+                Toast.makeText(applicationContext,"Saved!",Toast.LENGTH_LONG).show()
+            }catch (e: Exception){
+                Toast.makeText(applicationContext,"Enter To-Do",Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.btnReset.setOnClickListener(){
             reset()
         }
+
     }
 
     private fun reset() {
