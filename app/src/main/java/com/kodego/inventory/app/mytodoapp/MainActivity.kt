@@ -2,6 +2,7 @@ package com.kodego.inventory.app.mytodoapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kodego.inventory.app.mytodoapp.databinding.ActivityMainBinding
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
     lateinit var todoDb : ToDoDatabase
     lateinit var adapter : TodoAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -27,9 +29,13 @@ class MainActivity : AppCompatActivity() {
             try {
                 val task:String = binding.etTask.text.toString()
                 val toDo = ToDo(task)
+                if(task.isEmpty()) {
+                    throw Exception()
+                }
                 save(toDo)
                 adapter.toDo.add(toDo)
                 adapter.notifyDataSetChanged()
+
                 Toast.makeText(applicationContext,"Saved!",Toast.LENGTH_LONG).show()
             }catch (e: Exception){
                 Toast.makeText(applicationContext,"Enter To-Do",Toast.LENGTH_SHORT).show()

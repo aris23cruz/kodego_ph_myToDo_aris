@@ -10,7 +10,7 @@ import com.kodego.inventory.app.mytodoapp.db.ToDo
 
 class TodoAdapter (var toDo: MutableList<ToDo>): RecyclerView.Adapter<TodoAdapter.ToDoViewHolder>(){
 
-    var onTaskDelete : ((ToDo, Int) -> Unit) ? =null
+    var onTaskDelete : ((ToDo, Int) -> Unit) ? = null
 
 
     inner class ToDoViewHolder(var binding: RowItemBinding): RecyclerView.ViewHolder(binding.root)
@@ -39,7 +39,7 @@ class TodoAdapter (var toDo: MutableList<ToDo>): RecyclerView.Adapter<TodoAdapte
             toggleStrikeThrough(tvTask, toDo[position].isChecked)
             cbDone.setOnCheckedChangeListener { _, isChecked ->
                 toggleStrikeThrough(tvTask, isChecked)
-                toDo[position].isChecked = !toDo[position].isChecked
+                toDo[position].isChecked =! toDo[position].isChecked
             }
 
         }
